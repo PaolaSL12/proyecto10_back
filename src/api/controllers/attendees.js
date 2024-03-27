@@ -1,5 +1,7 @@
 const Attendee = require("../models/attendees");
 
+
+
 const getAttendees = async (req, res, next) => {
   try {
     const attendees = await Attendee.find().populate("events");
@@ -113,6 +115,17 @@ const deleteAttendee = async (req, res, next) => {
   }
 };
 
+
+const postAttendee = async (req, res, next) => {
+  try {
+    const newAttendee = new Attendee(req.body);
+    const attendee = await newAttendee.save();
+    return res.status(201).json(attendee);
+  } catch (error) {
+    return res.status(400).json("error");
+  }
+};
+
 module.exports = {
   getAttendees,
   getAttendeesById,
@@ -120,5 +133,6 @@ module.exports = {
   updateAttendee,
   getAttendeesByName,
   cancelAttendee,
-  deleteAttendee
+  deleteAttendee,
+  postAttendee
 };

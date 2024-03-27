@@ -1,5 +1,5 @@
 const { isAuth } = require("../../middlewares/auth");
-const { getAttendees, confirmAttendee, updateAttendee, getAttendeesByName, getAttendeesById, cancelAttendee, deleteAttendee } = require("../controllers/attendees");
+const { getAttendees, confirmAttendee, updateAttendee, getAttendeesByName, getAttendeesById, cancelAttendee, deleteAttendee, postAttendee } = require("../controllers/attendees");
 
 const attendeesRouter = require("express").Router();
 
@@ -10,6 +10,7 @@ attendeesRouter.get("/name/:name", getAttendeesByName)
 attendeesRouter.put("/:eventId", isAuth ,confirmAttendee);
 attendeesRouter.put("/cancel/:eventId", isAuth ,cancelAttendee);
 attendeesRouter.put("/:id/:eventId", updateAttendee);
+attendeesRouter.post("/", postAttendee);
 attendeesRouter.delete("/:id", deleteAttendee)
 
 
