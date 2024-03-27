@@ -28,10 +28,7 @@ const register = async (req, res, next) => {
           rol: "user"
       });
       const user = await newUser.save();
-      if (user) {
-        const token = generateToken(user._id);
-      }
-      return res.status(201).json(user, token);
+      return res.status(201).json(user);
     } catch (error) {
       return res.status(400).json("error");
     }
