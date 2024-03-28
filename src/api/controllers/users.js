@@ -18,7 +18,7 @@ const register = async (req, res, next) => {
       console.log(userDuplicated);
   
       if (userDuplicated) {
-        return res.status(400).json("Usuario ya existente");
+        return res.status(420).json("Usuario ya existente");
       }
   
       const newUser = new User({
