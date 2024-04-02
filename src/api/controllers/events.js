@@ -21,6 +21,12 @@ const getEvents = async (req, res, next) => {
 
   const postEvento = async (req, res, next) => {
     try {
+
+      if (!req.body.title || !req.body.date || !req.body.location || !req.body.description) {
+        return res.status(400).json({ error: "Todos los campos son oblicatorios para crear el evento" });
+      }
+
+
       const newEvent = new Event(req.body);
 
       
@@ -31,7 +37,7 @@ const getEvents = async (req, res, next) => {
       const event = await newEvent.save();
       return res.status(201).json(event);
     } catch (error) {
-      return res.status(400).json("error");
+      return res.status(500).json("error");
     }
   };
 
