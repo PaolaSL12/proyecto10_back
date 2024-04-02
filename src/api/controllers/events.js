@@ -22,14 +22,12 @@ const getEvents = async (req, res, next) => {
   const postEvento = async (req, res, next) => {
     try {
 
-      if (!req.body.title || !req.body.date || !req.body.location || !req.body.description) {
+      if (!req.body.title || !req.body.date || !req.body.location || !req.body.description || !req.file) {
         return res.status(400).json({ error: "Todos los campos son obligatorios para crear el evento" });
       }
 
-
       const newEvent = new Event(req.body);
 
-      
       if (req.file) {
         newEvent.img = req.file.path
        }
