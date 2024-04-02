@@ -23,7 +23,7 @@ const getEvents = async (req, res, next) => {
     try {
 
       if (!req.body.title || !req.body.date || !req.body.location || !req.body.description) {
-        return res.status(400).json({ error: "Todos los campos son oblicatorios para crear el evento" });
+        return res.status(400).json({ error: "Todos los campos son obligatorios para crear el evento" });
       }
 
 
